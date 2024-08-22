@@ -9,6 +9,7 @@ uint8_t readStatus = 0;
 
 #define fan_Pin A0            // Fan pin for heat dissipation;
 #define heat_Resistor_Pin A1  // Heating resistor for heat;
+#define buzzer_Pin A2 //buzzer pin for alarm
 
 //Set Control Assignment Variables
 double Setpoint, TempValue, Output;
@@ -27,8 +28,12 @@ void setup()
   Serial.println();
   
   pinMode(fan_Pin, OUTPUT);
+  pinMode(buzzer_Pin, OUTPUT);
   pinMode(heat_Resistor_Pin, OUTPUT );
+
   digitalWrite(fan_Pin, HIGH);
+  digitalWrite(buzzer_Pin, LOW);
+  
 
   Setpoint = 37.5; //This is the process setpoint
   pid.begin();          // initialize the PID instance
@@ -68,6 +73,8 @@ void loop()
   {
     Serial.print(F("Failed to read - reset: "));
     Serial.println(myAHT10.softReset()); // reset 1-success, 0-failed
+    
+    digitalWrite(buzzer_Pin, HIGH);
   }
 
   delay(10000); // recomended polling frequency 8sec..30sec
