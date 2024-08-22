@@ -14,6 +14,7 @@ uint8_t readStatus = 0;
 //Set Control Assignment Variables
 double Setpoint, TempValue, Output;
 
+
 // The PID arguments
 float kP, kI, kD; 
 
@@ -73,7 +74,7 @@ void loop()
   {
     Serial.print(F("Failed to read - reset: "));
     Serial.println(myAHT10.softReset()); // reset 1-success, 0-failed
-      
+
     digitalWrite(buzzer_Pin, HIGH);
   }
 
