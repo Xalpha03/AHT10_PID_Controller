@@ -73,7 +73,7 @@ void loop()
   {
     Serial.print(F("Failed to read - reset: "));
     Serial.println(myAHT10.softReset()); // reset 1-success, 0-failed
-    
+      
     digitalWrite(buzzer_Pin, HIGH);
   }
 
